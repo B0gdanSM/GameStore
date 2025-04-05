@@ -28,6 +28,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}  # Если ключ защищён паролем
           port: ${{ secrets.SSH_PORT }}
           source: "./wordpress.zip, ./wpcontent.zip"
           target: ${{ github.event_name == 'push' && 'public_html/game-store-dev' || 'public_html/game-store-prod' }}
@@ -38,6 +39,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}  # Если ключ защищён паролем
           port: ${{ secrets.SSH_PORT }}
           source: ".maintenance"
           target: ${{ github.event_name == 'push' && 'public_html/game-store-dev' || 'public_html/game-store-prod' }}
@@ -48,6 +50,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}  # Если ключ защищён паролем
           port: ${{ secrets.SSH_PORT }}
           script: |
             find "${{ github.event_name == 'push' && 'public_html/game-store-dev' || 'public_html/game-store-prod' }}" -type f -name "*.php" ! -name "wp-config.php" -delete
@@ -62,6 +65,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}  # Если ключ защищён паролем
           port: ${{ secrets.SSH_PORT }}
           script: |
             rm -rf "${{ github.event_name == 'push' && 'public_html/game-store-dev' || 'public_html/game-store-prod' }}/wp-content/plugins" "${{ github.event_name == 'push' && 'public_html/game-store-dev' || 'public_html/game-store-prod' }}/wp-content/mu-plugins" "${{ github.event_name == 'push' && 'public_html/game-store-dev' || 'public_html/game-store-prod' }}/wp-content/themes"
@@ -73,6 +77,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}  # Если ключ защищён паролем
           port: ${{ secrets.SSH_PORT }}
           script: |
             rm -f "${{ github.event_name == 'push' && 'public_html/game-store-dev' || 'public_html/game-store-prod' }}/.maintenance"
