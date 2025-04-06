@@ -27,7 +27,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           source: "./wordpress.zip, ./wpcontent.zip"
           target: ${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}
@@ -37,7 +37,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           source: ".maintenance"
           target: ${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}
@@ -47,7 +47,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             find "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}" -type f -name "*.php" ! -name "wp-config.php" -delete
@@ -61,7 +61,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             rm -rf "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-content/plugins" "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-content/mu-plugins" "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-content/themes"
@@ -72,7 +72,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
+          password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             rm -f "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/.maintenance"
