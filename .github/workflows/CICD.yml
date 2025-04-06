@@ -30,7 +30,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
           port: ${{ secrets.SSH_PORT }}
           source: "./wordpress.zip, ./wpcontent.zip"
-          target: ${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}
+          target: ${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}
 
       - name: Enable Maintenance Mode
         uses: appleboy/scp-action@master
@@ -40,7 +40,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
           port: ${{ secrets.SSH_PORT }}
           source: ".maintenance"
-          target: ${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}
+          target: ${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}
 
       - name: Update WordPress Core
         uses: appleboy/ssh-action@v1.0.3
@@ -50,11 +50,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
           port: ${{ secrets.SSH_PORT }}
           script: |
-            find "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}" -type f -name "*.php" ! -name "wp-config.php" -delete
-            rm -r "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wp-admin/" "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wp-includes/"
-            unzip -o "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wordpress.zip" -d "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/"
-            mv "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wordpress"/* "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/"
-            rm -r "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wordpress"
+            find "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}" -type f -name "*.php" ! -name "wp-config.php" -delete
+            rm -r "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-admin/" "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-includes/"
+            unzip -o "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wordpress.zip" -d "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/"
+            mv "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wordpress"/* "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/"
+            rm -r "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wordpress"
 
       - name: Update Plugins and Theme
         uses: appleboy/ssh-action@v1.0.3
@@ -64,8 +64,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -rf "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wp-content/plugins" "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wp-content/mu-plugins" "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wp-content/themes"
-            unzip -o "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wpcontent.zip" -d "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wp-content/"
+            rm -rf "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-content/plugins" "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-content/mu-plugins" "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-content/themes"
+            unzip -o "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wpcontent.zip" -d "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wp-content/"
 
       - name: Disable Maintenance Mode and Remove zips
         uses: appleboy/ssh-action@v1.0.3
@@ -75,6 +75,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Используем ключ вместо пароля
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -f "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/.maintenance"
-            rm -f "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wpcontent.zip"
-            rm -f "${{ github.event_name == 'push' && 'home/fiwafyib/public_html/game-store-dev' || 'home/fiwafyib/public_html/game-store-prod' }}/wordpress.zip"
+            rm -f "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/.maintenance"
+            rm -f "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wpcontent.zip"
+            rm -f "${{ github.event_name == 'push' && '/home/fiwafyib/public_html/game-store-dev' || '/home/fiwafyib/public_html/game-store-prod' }}/wordpress.zip"
