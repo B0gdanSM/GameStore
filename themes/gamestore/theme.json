@@ -7,22 +7,22 @@
 			"palette": [
 				{
 					"slug": "base",
-					"color": "#1e1e1e",
+					"color": "#FAFAFA",
 					"name": "Base"
 				},
 				{
 					"slug": "contrast",
-					"color": "#f0f0f0",
+					"color": "#0A090A",
 					"name": "Contrast"
 				},
 				{
 					"slug": "primary",
-					"color": "#0073aa",
+					"color": "#3DAFE2",
 					"name": "Primary"
 				},
 				{
 					"slug": "secondary",
-					"color": "#00a0d2",
+					"color": "#6F76C0",
 					"name": "Secondary"
 				},
 				{
@@ -57,8 +57,8 @@
 			]
 		},
 		"layout": {
-			"contentSize": "700px",
-			"wideSize": "1100px"
+			"contentSize": "1540px",
+			"wideSize": "1540px"
 		},
 		"spacing": {
 			"units": [ "px", "em", "rem", "vh", "vw", "%" ]
@@ -198,8 +198,8 @@
 			"core/post-content": {
 				"spacing": {
 					"margin": {
-						"top": "var(--wp--preset--spacing--60)",
-						"bottom": "var(--wp--preset--spacing--60)"
+						"top": "0",
+						"bottom": "0"
 					}
 				}
 			},
@@ -227,8 +227,8 @@
 			"core/post-template": {
 				"spacing": {
 					"padding": {
-						"top": "var(--wp--preset--spacing--50)",
-						"bottom": "var(--wp--preset--spacing--50)"
+						"top": "0",
+						"bottom": "0"
 					}
 				}
 			},
