@@ -2,20 +2,20 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks-hero/block.json":
-/*!************************************!*\
-  !*** ./src/blocks-hero/block.json ***!
-  \************************************/
+/***/ "./src/block-hero/block.json":
+/*!***********************************!*\
+  !*** ./src/block-hero/block.json ***!
+  \***********************************/
 /***/ ((module) => {
 
 module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blocks-gamestore/block-hero","version":"0.1.0","title":"Hero Block","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false},"textdomain":"blocks-gamestore","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"title":{"type":"string","source":"html","selector":".hero-title"},"description":{"type":"string","source":"html","selector":".hero-description"},"link":{"type":"string","source":"attribute","selector":"a","attribute":"href"},"linkAnchor":{"type":"string","source":"html","selector":"a"},"video":{"type":"string"},"image":{"type":"string"},"isVideo":{"type":"boolean"},"slides":{"type":"array","default":[]}}}');
 
 /***/ }),
 
-/***/ "./src/blocks-hero/edit.js":
-/*!*********************************!*\
-  !*** ./src/blocks-hero/edit.js ***!
-  \*********************************/
+/***/ "./src/block-hero/edit.js":
+/*!********************************!*\
+  !*** ./src/block-hero/edit.js ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -28,9 +28,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks-hero/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/block-hero/editor.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -167,7 +168,7 @@ function Edit({
           onChange: link => setAttributes({
             link
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextareaControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
           label: "Button Value",
           value: linkAnchor,
           onChange: linkAnchor => setAttributes({
@@ -184,6 +185,16 @@ function Edit({
               image: ''
             });
           }
+        }), isVideoUpload ? video && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("video", {
+          controls: true,
+          muted: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("source", {
+            src: video,
+            type: "video/mp4"
+          })
+        }) : image && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+          src: image,
+          alt: "Uploaded"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.MediaUpload, {
           onSelect: media => {
             if (isVideoUpload) {
@@ -200,7 +211,7 @@ function Edit({
           render: ({
             open
           }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            className: "components-button is-secondary",
+            className: "components-button is-secondary media-upload",
             onClick: open,
             children: isVideoUpload ? 'Upload Video' : 'Upload Image'
           })
@@ -223,9 +234,9 @@ function Edit({
       children: [video && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("video", {
         className: "video-bg",
         loop: "loop",
-        autoPlay: "",
+        autoplay: "",
         muted: true,
-        playsInline: true,
+        playsinline: true,
         width: "100%",
         height: "100%",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("source", {
@@ -257,10 +268,29 @@ function Edit({
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
           href: link,
-          className: "hero-button",
-          id: linkAnchor,
+          className: "hero-button shadow",
           children: linkAnchor
         })]
+      }), slides && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "hero-slider",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "slider-container",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "swiper-wrapper",
+            children: slides.map((slide, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "swiper-slide slide-item",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                src: slide.lightImage,
+                alt: "Logo",
+                className: "light-logo"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                src: slide.darkImage,
+                alt: "Logo",
+                className: "dark-logo"
+              })]
+            }, index))
+          })
+        })
       })]
     })]
   });
@@ -268,10 +298,10 @@ function Edit({
 
 /***/ }),
 
-/***/ "./src/blocks-hero/editor.scss":
-/*!*************************************!*\
-  !*** ./src/blocks-hero/editor.scss ***!
-  \*************************************/
+/***/ "./src/block-hero/editor.scss":
+/*!************************************!*\
+  !*** ./src/block-hero/editor.scss ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -280,19 +310,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks-hero/index.js":
-/*!**********************************!*\
-  !*** ./src/blocks-hero/index.js ***!
-  \**********************************/
+/***/ "./src/block-hero/index.js":
+/*!*********************************!*\
+  !*** ./src/block-hero/index.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks-hero/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks-hero/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks-hero/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks-hero/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/block-hero/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/block-hero/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/block-hero/save.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/block-hero/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -334,10 +364,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks-hero/save.js":
-/*!*********************************!*\
-  !*** ./src/blocks-hero/save.js ***!
-  \*********************************/
+/***/ "./src/block-hero/save.js":
+/*!********************************!*\
+  !*** ./src/block-hero/save.js ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -357,8 +387,8 @@ function save({
     title,
     description,
     link,
-    video,
     linkAnchor,
+    video,
     image,
     slides
   } = attributes;
@@ -367,9 +397,9 @@ function save({
     children: [video && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("video", {
       className: "video-bg",
       loop: "loop",
-      autoPlay: "",
+      autoplay: "",
       muted: true,
-      playsInline: true,
+      playsinline: true,
       width: "100%",
       height: "100%",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("source", {
@@ -395,8 +425,7 @@ function save({
         value: description
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
         href: link,
-        className: "hero-button",
-        id: linkAnchor,
+        className: "hero-button shadow",
         children: linkAnchor
       })]
     }), slides && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -409,11 +438,11 @@ function save({
             className: "swiper-slide slide-item",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
               src: slide.lightImage,
-              alt: slide.title,
+              alt: "Logo",
               className: "light-logo"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
               src: slide.darkImage,
-              alt: slide.title,
+              alt: "Logo",
               className: "dark-logo"
             })]
           }, index))
@@ -425,10 +454,10 @@ function save({
 
 /***/ }),
 
-/***/ "./src/blocks-hero/style.scss":
-/*!************************************!*\
-  !*** ./src/blocks-hero/style.scss ***!
-  \************************************/
+/***/ "./src/block-hero/style.scss":
+/*!***********************************!*\
+  !*** ./src/block-hero/style.scss ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -597,8 +626,8 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"blocks-hero/index": 0,
-/******/ 			"blocks-hero/style-index": 0
+/******/ 			"block-hero/index": 0,
+/******/ 			"block-hero/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -648,7 +677,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks-hero/style-index"], () => (__webpack_require__("./src/blocks-hero/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["block-hero/style-index"], () => (__webpack_require__("./src/block-hero/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
