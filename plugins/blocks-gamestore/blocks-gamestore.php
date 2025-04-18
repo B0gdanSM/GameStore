@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Plugin Name:       Blocks Gamestore
@@ -44,7 +43,7 @@ add_filter( 'block_type_metadata_settings', function( $settings, $metadata ) {
 	// Проверяем, что это нужный блок
 	if ( 'blocks-gamestore/games-line' === $metadata['name'] ) {
 			// Если имя блока совпадает, добавляем render_callback
-			$settings['render_callback'] = 'render_block_games_line';
+			$settings['render_callback'] = 'view_block_games_line';
 	}
 	return $settings;
 }, 10, 2 );

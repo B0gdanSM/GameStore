@@ -147,6 +147,12 @@ body {
   --text-secondary: rgba(255, 255, 255, 0.7);
 }
 
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 body {
   font-family: Urbanist;
   font-style: normal;
