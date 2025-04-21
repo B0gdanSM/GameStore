@@ -50,3 +50,44 @@ function gamestore_fix_svg() {
   </style>';
 }
 add_action('admin_head', 'gamestore_fix_svg');
+
+function gamestore_register_news_post_type() {
+    $labels = array(
+        'name'                  => _x('News', 'Post Type General Name', 'text_domain'),
+        'singular_name'         => _x('News Item', 'Post Type Singular Name', 'text_domain'),
+        'menu_name'             => __('News', 'text_domain'),
+        'name_admin_bar'        => __('News Item', 'text_domain'),
+        'archives'              => __('News Archives', 'text_domain'),
+        'attributes'            => __('News Item Attributes', 'text_domain'),
+        'all_items'             => __('All News', 'text_domain'),
+        'add_new_item'          => __('Add New News Item', 'text_domain'),
+        'add_new'               => __('Add New', 'text_domain'),
+        'edit_item'             => __('Edit News Item', 'text_domain'),
+        'view_item'             => __('View News Item', 'text_domain'),
+        'search_items'          => __('Search News', 'text_domain'),
+        'not_found'             => __('No news found', 'text_domain'),
+        'not_found_in_trash'    => __('No news found in trash', 'text_domain'),
+        'featured_image'        => __('News Featured Image', 'text_domain'),
+        'set_featured_image'    => __('Set featured image', 'text_domain'),
+    );
+
+    $args = array(
+        'label'                 => __('News', 'text_domain'),
+        'description'           => __('Company or website news', 'text_domain'),
+        'labels'                => $labels,
+        'supports'              => array('title', 'editor', 'thumbnail', 'excerpt', 'comments'),
+        'hierarchical'          => false,
+        'public'                => true,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'menu_position'         => 5,
+        'menu_icon'             => 'dashicons-megaphone',
+        'show_in_admin_bar'     => true,
+        'show_in_rest'          => true,
+        'has_archive'           => true,
+        'rewrite'               => array('slug' => 'news'),
+    );
+
+    register_post_type('news', $args);
+}
+add_action('init', 'gamestore_register_news_post_type', 0);
