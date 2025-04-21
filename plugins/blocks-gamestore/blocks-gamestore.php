@@ -40,11 +40,13 @@ function create_block_blocks_gamestore_block_init() {
 add_action( 'init', 'create_block_blocks_gamestore_block_init' );
 
 add_filter( 'block_type_metadata_settings', function( $settings, $metadata ) {
-	// Проверяем, что это нужный блок
 	if ( 'blocks-gamestore/games-line' === $metadata['name'] ) {
-			// Если имя блока совпадает, добавляем render_callback
 			$settings['render_callback'] = 'view_block_games_line';
 	}
+
+	if ( 'blocks-gamestore/recent-news' === $metadata['name'] ) {
+		$settings['render_callback'] = 'view_block_recent_news';
+}
 	return $settings;
 }, 10, 2 );
 
