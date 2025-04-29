@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       Blocks Gamestore
  * Description:       Example block scaffolded with Create Block tool.
@@ -13,51 +14,57 @@
  * @package CreateBlock
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'BLOCKS_GAMESTORE_PATH', plugin_dir_path(__FILE__) );
+define('BLOCKS_GAMESTORE_PATH', plugin_dir_path(__FILE__));
 
-require_once( BLOCKS_GAMESTORE_PATH . 'blocks.php' );
+require_once(BLOCKS_GAMESTORE_PATH . 'blocks.php');
 
-function create_block_blocks_gamestore_block_init() {
-	if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {
-		wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
+function create_block_blocks_gamestore_block_init()
+{
+	if (function_exists('wp_register_block_types_from_metadata_collection')) {
+		wp_register_block_types_from_metadata_collection(__DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php');
 		return;
 	}
 
 
-	if ( function_exists( 'wp_register_block_metadata_collection' ) ) {
-		wp_register_block_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
+	if (function_exists('wp_register_block_metadata_collection')) {
+		wp_register_block_metadata_collection(__DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php');
 	}
 
 	$manifest_data = require __DIR__ . '/build/blocks-manifest.php';
-	foreach ( array_keys( $manifest_data ) as $block_type ) {
-		register_block_type( __DIR__ . "/build/{$block_type}" );
+	foreach (array_keys($manifest_data) as $block_type) {
+		register_block_type(__DIR__ . "/build/{$block_type}");
 	}
 }
-add_action( 'init', 'create_block_blocks_gamestore_block_init' );
+add_action('init', 'create_block_blocks_gamestore_block_init');
 
-add_filter( 'block_type_metadata_settings', function( $settings, $metadata ) {
-	if ( 'blocks-gamestore/games-line' === $metadata['name'] ) {
-			$settings['render_callback'] = 'view_block_games_line';
+add_filter('block_type_metadata_settings', function ($settings, $metadata) {
+	if ('blocks-gamestore/games-line' === $metadata['name']) {
+		$settings['render_callback'] = 'view_block_games_line';
 	}
 
-	if ( 'blocks-gamestore/recent-news' === $metadata['name'] ) {
+	if ('blocks-gamestore/recent-news' === $metadata['name']) {
 		$settings['render_callback'] = 'view_block_recent_news';
-}
-	return $settings;
-}, 10, 2 );
+	}
 
-add_filter('block_categories_all', function($categories) {
-		return array_merge(
-				$categories,
-				[
-						[
-								'slug' => 'gamestore',
-								'title' => 'GameStore'
-						]
-				]
-		);
+	if ('blocks-gamestore/subscribe' === $metadata['name']) {
+		$settings['render_callback'] = 'view_block_subscribe';
+	}
+
+	return $settings;
+}, 10, 2);
+
+add_filter('block_categories_all', function ($categories) {
+	return array_merge(
+		$categories,
+		[
+			[
+				'slug' => 'gamestore',
+				'title' => 'GameStore'
+			]
+		]
+	);
 }, 10, 2);
