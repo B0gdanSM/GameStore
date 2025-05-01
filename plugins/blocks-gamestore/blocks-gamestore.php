@@ -54,6 +54,10 @@ add_filter('block_type_metadata_settings', function ($settings, $metadata) {
 		$settings['render_callback'] = 'view_block_subscribe';
 	}
 
+	if ('blocks-gamestore/featured-products' === $metadata['name']) {
+		$settings['render_callback'] = 'view_block_featured_products';
+	}
+
 	return $settings;
 }, 10, 2);
 
