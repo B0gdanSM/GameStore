@@ -76,6 +76,7 @@ function gamestore_register_news_post_type() {
         'description'           => __('Company or website news', 'text_domain'),
         'labels'                => $labels,
         'supports'              => array('title', 'editor', 'thumbnail', 'excerpt', 'comments'),
+        'taxonomies'            => array('news_category'), // Подключаем нашу таксономию
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
@@ -90,4 +91,33 @@ function gamestore_register_news_post_type() {
 
     register_post_type('news', $args);
 }
+
+function gamestore_register_news_taxonomy() {
+    $labels = array(
+        'name'              => _x('News Categories', 'taxonomy general name', 'text_domain'),
+        'singular_name'     => _x('News Category', 'taxonomy singular name', 'text_domain'),
+        'search_items'      => __('Search News Categories', 'text_domain'),
+        'all_items'         => __('All News Categories', 'text_domain'),
+        'parent_item'       => __('Parent News Category', 'text_domain'),
+        'parent_item_colon' => __('Parent News Category:', 'text_domain'),
+        'edit_item'         => __('Edit News Category', 'text_domain'),
+        'update_item'       => __('Update News Category', 'text_domain'),
+        'add_new_item'      => __('Add New News Category', 'text_domain'),
+        'new_item_name'     => __('New News Category Name', 'text_domain'),
+        'menu_name'         => __('News Categories', 'text_domain'),
+    );
+
+    $args = array(
+        'hierarchical'      => true, // как обычные категории
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => array('slug' => 'news-category'),
+    );
+
+    register_taxonomy('news_category', array('news'), $args);
+}
+
 add_action('init', 'gamestore_register_news_post_type', 0);
+add_action('init', 'gamestore_register_news_taxonomy', 0);
