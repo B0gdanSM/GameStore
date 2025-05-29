@@ -42,23 +42,21 @@ function create_block_blocks_gamestore_block_init()
 add_action('init', 'create_block_blocks_gamestore_block_init');
 
 add_filter('block_type_metadata_settings', function ($settings, $metadata) {
-	if ('blocks-gamestore/games-line' === $metadata['name']) {
-		$settings['render_callback'] = 'view_block_games_line';
-	}
+    $callbacks = [
+        'blocks-gamestore/games-line'         => 'view_block_games_line',
+        'blocks-gamestore/recent-news'        => 'view_block_recent_news',
+        'blocks-gamestore/subscribe'          => 'view_block_subscribe',
+        'blocks-gamestore/featured-products'  => 'view_block_featured_products',
+        'blocks-gamestore/single-news'        => 'view_block_single_news',
+        'blocks-gamestore/news-header'        => 'view_block_news_header',
+        'blocks-gamestore/news-box'           => 'view_block_news_box',
+    ];
 
-	if ('blocks-gamestore/recent-news' === $metadata['name']) {
-		$settings['render_callback'] = 'view_block_recent_news';
-	}
+    if (isset($callbacks[$metadata['name']])) {
+        $settings['render_callback'] = $callbacks[$metadata['name']];
+    }
 
-	if ('blocks-gamestore/subscribe' === $metadata['name']) {
-		$settings['render_callback'] = 'view_block_subscribe';
-	}
-
-	if ('blocks-gamestore/featured-products' === $metadata['name']) {
-		$settings['render_callback'] = 'view_block_featured_products';
-	}
-
-	return $settings;
+    return $settings;
 }, 10, 2);
 
 add_filter('block_categories_all', function ($categories) {

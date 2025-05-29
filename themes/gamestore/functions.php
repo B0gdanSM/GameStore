@@ -60,5 +60,13 @@ function gamestore_gutenbeg_style()
 		[],
 		'1.0.0'
 	);
+
+	wp_enqueue_style(
+		'gamestore-editor-styles',
+		get_template_directory_uri() . '/assets/css/editor-style.css',
+		[],
+		'1.0.0'
+	);
 }
 add_action('enqueue_block_editor_assets', 'gamestore_gutenbeg_style');
+add_action('enqueue_block_assets', 'gamestore_gutenbeg_style');
