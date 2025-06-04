@@ -47,7 +47,9 @@ add_filter('block_type_metadata_settings', function ($settings, $metadata) {
         'blocks-gamestore/recent-news'        => 'view_block_recent_news',
         'blocks-gamestore/subscribe'          => 'view_block_subscribe',
         'blocks-gamestore/featured-products'  => 'view_block_featured_products',
+        'blocks-gamestore/similar-products'  => 'view_block_similar_products',
         'blocks-gamestore/single-news'        => 'view_block_single_news',
+        'blocks-gamestore/single-game'        => 'view_block_single_game',
         'blocks-gamestore/news-header'        => 'view_block_news_header',
         'blocks-gamestore/news-box'           => 'view_block_news_box',
     ];
