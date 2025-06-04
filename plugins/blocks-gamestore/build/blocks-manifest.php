@@ -368,6 +368,62 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 	),
+	'block-similar-products' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blocks-gamestore/similar-products',
+		'version' => '0.1.0',
+		'title' => 'Similar Products',
+		'category' => 'gamestore',
+		'icon' => 'smiley',
+		'description' => 'Similar Products',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'count' => array(
+				'type' => 'number',
+				'default' => 12
+			),
+			'title' => array(
+				'type' => 'string'
+			),
+			'link' => array(
+				'type' => 'string'
+			),
+			'linkAnchor' => array(
+				'type' => 'string'
+			)
+		),
+		'textdomain' => 'blocks-gamestore',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
+	'block-single-game' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blocks-gamestore/single-game',
+		'version' => '0.1.0',
+		'title' => 'Single Game',
+		'category' => 'gamestore',
+		'icon' => 'smiley',
+		'description' => 'Single Game',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'blocks-gamestore',
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
 	'block-single-news' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -387,6 +443,45 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
+	),
+	'block-slider' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'blocks-gamestore/block-slider',
+		'version' => '0.1.0',
+		'title' => 'Hero Slider',
+		'category' => 'gamestore',
+		'icon' => 'smiley',
+		'description' => 'Slider Block',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'textdomain' => 'blocks-gamestore',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js',
+		'attributes' => array(
+			'title' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => '.slider-title'
+			),
+			'description' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => '.slider-description'
+			),
+			'slides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			)
+		)
 	),
 	'block-subscribe' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
