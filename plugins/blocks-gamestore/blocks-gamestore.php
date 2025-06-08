@@ -10,6 +10,7 @@
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       blocks-gamestore
+ * Requires Plugins:  woocommerce
  *
  * @package CreateBlock
  */
@@ -43,15 +44,18 @@ add_action('init', 'create_block_blocks_gamestore_block_init');
 
 add_filter('block_type_metadata_settings', function ($settings, $metadata) {
     $callbacks = [
-        'blocks-gamestore/games-line'         => 'view_block_games_line',
-        'blocks-gamestore/recent-news'        => 'view_block_recent_news',
-        'blocks-gamestore/subscribe'          => 'view_block_subscribe',
-        'blocks-gamestore/featured-products'  => 'view_block_featured_products',
-        'blocks-gamestore/similar-products'  => 'view_block_similar_products',
-        'blocks-gamestore/single-news'        => 'view_block_single_news',
-        'blocks-gamestore/single-game'        => 'view_block_single_game',
-        'blocks-gamestore/news-header'        => 'view_block_news_header',
-        'blocks-gamestore/news-box'           => 'view_block_news_box',
+        'blocks-gamestore/games-line'          => 'view_block_games_line',
+        'blocks-gamestore/recent-news'         => 'view_block_recent_news',
+        'blocks-gamestore/subscribe'           => 'view_block_subscribe',
+        'blocks-gamestore/featured-products'   => 'view_block_featured_products',
+        'blocks-gamestore/similar-products'    => 'view_block_similar_products',
+        'blocks-gamestore/bestseller-products' => 'view_block_bestseller_products',
+        'blocks-gamestore/single-news'         => 'view_block_single_news',
+        'blocks-gamestore/single-game'         => 'view_block_single_game',
+        'blocks-gamestore/news-header'         => 'view_block_news_header',
+        'blocks-gamestore/news-box'            => 'view_block_news_box',
+        'blocks-gamestore/games-box'           => 'view_block_games_box',
+				'blocks-gamestore/product-header'      => 'view_block_product_header'
     ];
 
     if (isset($callbacks[$metadata['name']])) {

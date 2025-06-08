@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "blocks-gamestore/recent-news",
+	"name": "blocks-gamestore/games-box",
 	"version": "0.1.0",
-	"title": "Recent News",
+	"title": "Games Box",
 	"category": "gamestore",
 	"icon": "smiley",
-	"description": "Recent News Block",
+	"description": "Games Box",
 	"example": {},
 	"supports": {
 		"html": false
@@ -14,20 +14,15 @@
 	"attributes": {
 		"count": {
 			"type": "number",
-			"default": 3
+			"default": 8
 		},
 		"title": {
-			"type": "string"
-		},
-		"description": {
-			"type": "string"
-		},
-		"image": {
 			"type": "string"
 		}
 	},	
 	"textdomain": "blocks-gamestore",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
 }
