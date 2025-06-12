@@ -448,7 +448,7 @@ function view_block_product_header($attributes){
         echo '<h1 class="news-header-title">' . $attributes['title'] . '</h1>';
     }
 
-    // if($attributes['styleType'] == 'archive'){
+    if($attributes['styleType'] == 'archive'){
       $terms_news = get_terms( array(
           'taxonomy' => 'genres',
           'hide_empty' => false,
@@ -462,18 +462,18 @@ function view_block_product_header($attributes){
           }
         echo '</div>';
       }
-    // } 
-		// else {
-    //   if(!empty($attributes['links'])){
-    //     echo '<div class="cart-link">';
-    //       foreach($attributes['links'] as $link){
-    //         echo '<div class="cart-link-item">
-    //           <a href="'.$link['url'].'">'.$link['anchor'] . '</a>
-    //         </div>';
-    //       }
-    //     echo '</div>';
-    //   }
-    // }
+    } 
+		else {
+      if(!empty($attributes['links'])){
+        echo '<div class="cart-link">';
+          foreach($attributes['links'] as $link){
+            echo '<div class="cart-link-item">
+              <a href="'.$link['url'].'">'.$link['anchor'] . '</a>
+            </div>';
+          }
+        echo '</div>';
+      }
+    }
 
     echo '</div>';
   echo '</div>';
@@ -485,31 +485,37 @@ function view_block_product_header($attributes){
 function view_block_bestseller_products($attributes){
   
   if(isset($attributes['productType']) && $attributes['productType'] == 'crossseller'){
-    $cross_sell_ids = [];
+		if (
+			function_exists('WC') &&
+			WC()->cart &&
+			did_action('woocommerce_cart_loaded_from_session')
+		) {
+			$cross_sell_ids = [];
 
-    $cart = WC()->cart->get_cart();
-    if(!empty($cart)){
-      foreach($cart as $cart_item){
-        $product_id = $cart_item['product_id'];
-        $product_cross_sells = get_post_meta($product_id, '_crosssell_ids', true);
+			$cart = WC()->cart->get_cart();
+			if(!empty($cart)){
+				foreach($cart as $cart_item){
+					$product_id = $cart_item['product_id'];
+					$product_cross_sells = get_post_meta($product_id, '_crosssell_ids', true);
 
-        if(!empty($product_cross_sells)){
-          $cross_sell_ids = array_merge($cross_sell_ids, $product_cross_sells);
-        }
-      }
-    }
+					if(!empty($product_cross_sells)){
+						$cross_sell_ids = array_merge($cross_sell_ids, $product_cross_sells);
+					}
+				}
+			}
 
-    $cross_sell_ids = array_unique($cross_sell_ids);
-    
-    if(!empty($cross_sell_ids)){
-      $slider_games = wc_get_products(array(
-        'status' => 'publish',
-        'limit' => $attributes['count'],
-        'include' => $cross_sell_ids,
-      ));
-    } else {
-      $slider_games = [];
-    }
+			$cross_sell_ids = array_unique($cross_sell_ids);
+			
+			if(!empty($cross_sell_ids)){
+				$slider_games = wc_get_products(array(
+					'status' => 'publish',
+					'limit' => $attributes['count'],
+					'include' => $cross_sell_ids,
+				));
+			} else {
+				$slider_games = [];
+			}
+		}
   } else {
     $slider_games = wc_get_products(array(
       'status' => 'publish',
