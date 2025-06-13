@@ -13,8 +13,8 @@ function gamestore_styles()
 	wp_enqueue_style('swiper-bundle', get_template_directory_uri() . '/assets/css/swiper-bundle.min.css', [], wp_get_theme()->get('Version'));
 	wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/assets/js/swiper-bundle.min.js', [], wp_get_theme()->get('Version'), true);
 
-	if(is_cart()) {
-		wp_enqueue_style('gamestore-woo-cart', get_template_directory_uri() . '/assets/css/woo-cart.css', [], wp_get_theme()->get('Version'));
+	if(is_cart() || is_checkout()) {
+		wp_enqueue_style('gamestore-woo-custom', get_template_directory_uri() . '/assets/css/woo-custom.css', [], wp_get_theme()->get('Version'));
 	}
 }
 add_action('wp_enqueue_scripts', 'gamestore_styles');
@@ -58,28 +58,30 @@ function gamestore_gutenbeg_style()
 		'1.0.0' // Версия
 	);
 
-	wp_enqueue_style(
-		'gamestore-editor-styles',
-		get_template_directory_uri() . '/assets/css/editor-style.css',
-		[],
-		'1.0.0'
-	);
-
-	wp_enqueue_style(
-		'gamestore-editor-styles',
-		get_template_directory_uri() . '/assets/css/editor-style.css',
-		[],
-		'1.0.0'
-	);
+	if(is_admin()) {
+		wp_enqueue_style(
+			'gamestore-editor-styles',
+			get_template_directory_uri() . '/assets/css/editor-style.css',
+			[],
+			'1.0.0'
+		);
 
 		wp_enqueue_style(
-		'woo-cart-editor-styles',
-		get_template_directory_uri() . '/assets/css/woo-cart.css',
-		[],
-		'1.0.0'
-	);
+			'gamestore-editor-styles',
+			get_template_directory_uri() . '/assets/css/editor-style.css',
+			[],
+			'1.0.0'
+		);
 
-	add_editor_style('/assets/css/woo-cart.css'); // Добавляем стили в редактор Gutenberg
+			wp_enqueue_style(
+			'woo-cart-editor-styles',
+			get_template_directory_uri() . '/assets/css/woo-cart.css',
+			[],
+			'1.0.0'
+		);
+
+		add_editor_style('/assets/css/woo-cart.css'); // Добавляем стили в редактор Gutenberg
+	}
 }
 add_action('enqueue_block_editor_assets', 'gamestore_gutenbeg_style');
 add_action('enqueue_block_assets', 'gamestore_gutenbeg_style');

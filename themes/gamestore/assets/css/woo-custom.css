@@ -1,3 +1,6 @@
+.woocommerce-checkout main {
+	flex-direction: column;
+}
 .gamestore-cart-page {
   flex-direction: column;
   width: 100%;
